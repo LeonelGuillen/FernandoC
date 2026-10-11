@@ -200,7 +200,7 @@ def book_card(b):
 def build_index():
     profiles = [
         ("gavel", "Magistrado", "Integra la Sala Constitucional desde 2009 y la preside. Reelecto por la Asamblea Legislativa en 2025 para un nuevo período de ocho años.", "trayectoria.html", "Ver trayectoria"),
-        ("cap", "Académico", "Catedrático desde 1985. Profesor de doctorado y maestría en la Escuela Libre de Derecho, la UNED y la Universidad de Costa Rica.", "trayectoria.html#docencia", "Docencia"),
+        ("cap", "Académico", f"Catedrático desde 1985 ({date.today().year-1985} años de docencia). Profesor de doctorado y maestría en la Escuela Libre de Derecho, la UNED y la Universidad de Costa Rica.", "trayectoria.html#docencia", "Docencia"),
         ("book", "Autor", "Once libros como autor y coautor y más de treinta artículos en revistas especializadas de Derecho Público.", "publicaciones.html", "Ver publicaciones"),
         ("globe", "Conferencista internacional", "Ponente en foros de Costa Rica, Latinoamérica, Estados Unidos y Europa sobre justicia constitucional y derechos fundamentales.", "participaciones.html", "Ver participaciones"),
     ]
@@ -217,7 +217,7 @@ def build_index():
 <section class="hero"><div class="wrap hero-grid">
   <div>
     <div class="eyebrow">Corte Suprema de Justicia · Costa Rica</div>
-    <h1>Fernando <em>Castillo</em> Víquez</h1>
+    <h1>Fernando <em>Castillo Víquez</em></h1>
     <p class="lead">Presidente de la Sala Constitucional. Doctor en Derecho, catedrático universitario y autor de obras de referencia en Derecho Constitucional y Parlamentario.</p>
     <ul class="roles"><li>Magistrado Sala Constitucional</li><li>Doctor en Derecho Constitucional</li><li>Notario Público</li><li>Profesor universitario</li><li>Conferencista internacional</li></ul>
     <div class="btns"><a class="btn btn-gold" href="/trayectoria.html">Conocer su trayectoria</a><a class="btn btn-ghost" href="/publicaciones.html">Publicaciones</a></div>
@@ -227,11 +227,11 @@ def build_index():
 </div></section>
 
 <section class="stats"><div class="wrap stats-grid">
-  <div class="stat"><b>2009</b><span>Magistrado de la Sala IV</span></div>
-  <div class="stat"><b>40+</b><span>años de docencia universitaria</span></div>
-  <div class="stat"><b>11</b><span>libros como autor y coautor</span></div>
-  <div class="stat"><b>30+</b><span>artículos especializados</span></div>
-  <div class="stat"><b>{len(ponencias)//10*10}+</b><span>conferencias y foros</span></div>
+  <div class="stat"><b data-count="2009" data-from="1989">2009</b><span>Magistrado de la Sala IV</span></div>
+  <div class="stat"><b data-count="{date.today().year-1985}" data-since="1985" data-suffix="+">{date.today().year-1985}+</b><span>años de docencia universitaria</span></div>
+  <div class="stat"><b data-count="11">11</b><span>libros como autor y coautor</span></div>
+  <div class="stat"><b data-count="30" data-suffix="+">30+</b><span>artículos especializados</span></div>
+  <div class="stat"><b data-count="{len(ponencias)//10*10}" data-suffix="+">{len(ponencias)//10*10}+</b><span>conferencias y foros</span></div>
 </div></section>
 
 <section class="block"><div class="wrap">

@@ -17,6 +17,30 @@
     els.forEach(el => io.observe(el));
   } else els.forEach(el => el.classList.add('in'));
 
+  // Contadores animados en las cifras
+  const counters = document.querySelectorAll('[data-count]');
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const yearNow = new Date().getFullYear();
+  const run = el => {
+    let to = +el.dataset.count;
+    if (el.dataset.since) to = yearNow - +el.dataset.since;   // años transcurridos, se actualiza solo cada año
+    const from = +(el.dataset.from || 0), suf = el.dataset.suffix || '';
+    if (reduce) { el.textContent = to + suf; return; }
+    const dur = 1600, t0 = performance.now();
+    const step = t => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * e) + (p === 1 ? suf : '');
+      if (p < 1) requestAnimationFrame(step); else el.classList.add('done');
+    };
+    el.textContent = from; requestAnimationFrame(step);
+  };
+  if (counters.length) {
+    if ('IntersectionObserver' in window) {
+      const co = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { run(en.target); co.unobserve(en.target); } }), { threshold: .6 });
+      counters.forEach(c => co.observe(c));
+    } else counters.forEach(run);
+  }
+
   // Filtros + búsqueda (publicaciones / participaciones)
   const list = document.querySelector('[data-filter-list]');
   if (list) {

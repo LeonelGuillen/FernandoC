@@ -324,3 +324,13 @@ textarea{min-height:150px;resize:vertical}
 .el-step p{font-size:.95rem;margin:0 0 8px}
 .el-step a{font-size:.8rem;font-weight:600;text-decoration:none}
 @media (max-width:600px){.el-step{grid-template-columns:1fr;gap:4px}}
+
+/* Apellido completo en la misma letra + contadores */
+.hero h1 em{white-space:nowrap}
+.stat b{display:block;transition:transform .3s}
+.stat span{display:block}
+.stat b.done{animation:pop .45s ease}
+@keyframes pop{50%{transform:scale(1.08)}}
+.stat::after{content:"";display:block;width:28px;height:2px;background:var(--gold-2);margin:12px auto 0;opacity:.6;transform:scaleX(0);transition:transform .8s .4s}
+.stat:has(b.done)::after{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){.stat b.done{animation:none}.stat::after{transform:none}}
