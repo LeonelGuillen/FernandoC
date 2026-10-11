@@ -38,8 +38,8 @@ def parse(lines):
 T, P, PB = L["trayectoria"], L["participaciones"], L["publicaciones"]
 estudios = parse(T[8:12])
 cargos = parse(T[13:50])
-ponencias_raw = parse(P[1:86]) + parse(T[50:79])
-asistencia = parse(P[87:107])
+ponencias_raw = parse(P[1:85]) + parse(T[50:79])
+asistencia = parse(P[86:106])
 articulos_raw = PB[12:43]
 investigaciones = parse(PB[44:46])
 
@@ -412,7 +412,10 @@ def build_prensa():
     return page("prensa.html", "Prensa y actualidad | Fernando Castillo Víquez",
                 "Entrevistas, perfiles y noticias sobre Fernando Castillo Víquez, presidente de la Sala Constitucional de Costa Rica.", body)
 
-VIDEOS = [("WeDMa-A-sMo","Entrevista a don Fernando Castillo Víquez","Sobre un seminario regional y la importancia de las decisiones de la Corte Interamericana de Derechos Humanos para los Estados parte."),
+VIDEOS = [("E4O-0gI2j0o","Juramentación para un nuevo período en la Sala Constitucional","Extra TV · noviembre de 2025. Presta juramento ante la Asamblea Legislativa para un nuevo período de ocho años como magistrado."),
+          ("5sLBl72rUVM","“La Sala charla” con el magistrado Fernando Castillo Víquez","Escuela Judicial Electoral del Tribunal Electoral del Poder Judicial de la Federación (México) · 24 de junio de 2022."),
+          ("8_P4O4-GF2s","Comparecencia ante la Comisión de Nombramientos","Asamblea Legislativa de Costa Rica. Audiencia en el proceso de su reelección como magistrado de la Sala Constitucional."),
+          ("WeDMa-A-sMo","Entrevista a don Fernando Castillo Víquez","Sobre un seminario regional y la importancia de las decisiones de la Corte Interamericana de Derechos Humanos para los Estados parte."),
           ("nhIKJSm2RYA","Sala Constitucional y Asamblea Legislativa","Reflexión sobre la relación entre la jurisdicción constitucional y el Parlamento.")]
 def indicators_block():
     out = ""

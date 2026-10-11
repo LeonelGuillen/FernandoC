@@ -70,7 +70,7 @@ PERSON = {
 
 WEBSITE = {"@type": "WebSite", "@id": WID, "url": SITE + "/", "name": "Fernando Castillo Víquez", "inLanguage": "es-CR", "publisher": {"@id": PID}, "about": {"@id": PID}}
 
-VIDEOS = [("WeDMa-A-sMo", "Entrevista a don Fernando Castillo Víquez"), ("nhIKJSm2RYA", "Sala Constitucional y Asamblea Legislativa — Fernando Castillo Víquez")]
+VIDEOS = [("E4O-0gI2j0o", "Juramentación de Fernando Castillo Víquez para un nuevo período en la Sala Constitucional"), ("5sLBl72rUVM", "La Sala charla con el magistrado Fernando Castillo Víquez — TEPJF"), ("8_P4O4-GF2s", "Fernando Castillo Víquez ante la Comisión de Nombramientos de la Asamblea Legislativa"), ("WeDMa-A-sMo", "Entrevista a don Fernando Castillo Víquez"), ("nhIKJSm2RYA", "Sala Constitucional y Asamblea Legislativa — Fernando Castillo Víquez")]
 
 VIDEO_DATES = {}  # p. ej. {"WeDMa-A-sMo": "2013-05-20"}
 
