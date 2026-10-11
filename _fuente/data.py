@@ -169,8 +169,8 @@ ELECTION = [
  dict(y="2018 – 2020", t="Presidente de la Sala Constitucional",
       s="Asumió la presidencia de forma interina en agosto de 2018 y en mayo de 2020 el pleno de magistrados lo eligió por unanimidad como presidente.",
       u="https://salaconstitucional.poder-judicial.go.cr/index.php/sala-de-prensa/comunicados/sala-constitucional-elige-al-doctor-fernando-castillo-como-su-presidente", src="Sala Constitucional"),
- dict(y="10 nov 2025", t="Segunda reelección",
-      s="El Plenario votó 24 a favor y 20 en contra; para no reelegirlo se requerían al menos 38 votos (dos tercios de la Asamblea). Fue juramentado el 17 de noviembre de 2025 para su tercer período.",
-      u="https://delfino.cr/2025/11/fernando-castillo-presidente-de-la-sala-iv-reelecto-magistrado-por-ocho-anos-mas", src="Delfino.cr"),
+ dict(y="17 nov 2025", t="Tercer período en la Sala Constitucional",
+      s="Tras ser reelegido por la Asamblea Legislativa, fue juramentado para un nuevo período de ocho años. Al asumir afirmó hacerlo «con un profundo sentido de responsabilidad» y se comprometió con una Sala cercana a la ciudadanía, que responda a tiempo y proteja de forma efectiva los derechos de las personas.",
+      u="https://elmundo.cr/costa-rica/fernando-castillo-viquez-inicia-nuevo-periodo-en-la-sala-constitucional/", src="El Mundo CR"),
 ]
 ART158 = "Según el artículo 158 de la Constitución Política, los magistrados de la Corte Suprema se eligen por ocho años y se consideran reelegidos por períodos iguales, salvo que al menos dos terceras partes del total de diputados voten en contra."
