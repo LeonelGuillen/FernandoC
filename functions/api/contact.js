@@ -1,8 +1,7 @@
 // Cloudflare Pages Function — POST /api/contact
-// Variables de entorno (Pages > Settings > Variables and Secrets):
-//   RESEND_API_KEY   (secreto)  API key de https://resend.com
-//   CONTACT_TO                  correo que recibe los mensajes
-//   CONTACT_FROM                remitente verificado en Resend, p. ej. "Sitio web <web@fernandocastillocr.com>"
+// Envía el mensaje mediante el Worker "fernandoc-mailer" (Service binding MAILER, ver wrangler.toml),
+// que usa el enrutamiento de correo de Cloudflare. El correo destino es un secreto del Worker
+// (CONTACT_TO) y no aparece en este repositorio.
 //   TURNSTILE_SECRET (opcional) si se activa Cloudflare Turnstile en el formulario
 
 const json = (data, status = 200) =>
@@ -36,20 +35,16 @@ export async function onRequestPost({ request, env }) {
     if (!v.success) return json({ ok: false, error: 'No se pudo verificar que usted no es un robot.' }, 403);
   }
 
-  if (!env.RESEND_API_KEY || !env.CONTACT_TO || !env.CONTACT_FROM) {
+  if (!env.MAILER) {
     return json({ ok: false, error: 'El formulario aún no está configurado. Intente más tarde.' }, 503);
   }
 
-  const html = `<h2>Nuevo mensaje desde el sitio web</h2>
-<p><b>Nombre:</b> ${esc(nombre)}<br><b>Correo:</b> ${esc(correo)}<br><b>Institución:</b> ${esc(institucion) || '—'}<br><b>Asunto:</b> ${esc(asunto)}</p>
-<p style="white-space:pre-wrap">${esc(mensaje)}</p>`;
-
-  const r = await fetch('https://api.resend.com/emails', {
+  const r = await env.MAILER.fetch('https://mailer/send', {
     method: 'POST',
-    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: env.CONTACT_FROM, to: env.CONTACT_TO.split(',').map(s => s.trim()), reply_to: correo, subject: `[Web] ${asunto || 'Contacto'} — ${nombre}`, html })
-  });
-  if (!r.ok) return json({ ok: false, error: 'No fue posible enviar el mensaje en este momento.' }, 502);
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ nombre, correo, institucion, asunto, mensaje })
+  }).catch(() => null);
+  if (!r || !r.ok) return json({ ok: false, error: 'No fue posible enviar el mensaje en este momento.' }, 502);
   return json({ ok: true });
 }
 
