@@ -241,13 +241,13 @@ def build_index():
 </div></section>
 
 <section class="block alt"><div class="wrap grid-2">
-  <div class="bio-img reveal"><img src="/assets/img/conferencia.webp" alt="Fernando Castillo Víquez durante una intervención" loading="lazy" width="1067" height="1600"><span class="tag">Procurador Constitucional 1999–2009</span></div>
+  <div class="bio-img reveal"><img src="/assets/img/conferencia.webp" alt="Fernando Castillo Víquez durante una intervención" loading="lazy" width="1067" height="1600"><span class="tag">Catedrático universitario desde 1985</span></div>
   <div class="reveal">
-    <div class="eyebrow">En síntesis</div>
-    <h2>Del Parlamento a la Sala Constitucional</h2>
-    <p>Licenciado en Derecho y Notario Público por la Universidad de Costa Rica y Doctor en Derecho por la Universidad Escuela Libre de Derecho.</p>
-    <p>Fue asesor del Directorio y de los presidentes de la Asamblea Legislativa, Letrado Mayor de ese órgano, asesor-coordinador del Área Jurídica de la Primera Vicepresidencia y asesor del Ministro de la Presidencia. Entre 1999 y 2009 se desempeñó como Procurador Constitucional.</p>
-    <p>Desde 2009 es magistrado propietario de la Sala Constitucional, que actualmente preside. Combina la función jurisdiccional con la docencia de grado y posgrado.</p>
+    <div class="eyebrow">Su historia</div>
+    <h2>Una vida dedicada al estudio del Derecho</h2>
+    <p>Cursó la secundaria en el Colegio Rodrigo Hernández Vargas y en el Colegio Nocturno de Barva de Heredia. En 1981 fue reconocido como Estudiante de Honor de la Facultad de Derecho de la Universidad de Costa Rica, donde se graduó como licenciado en Derecho y notario público.</p>
+    <p>Desde 1985 combina el ejercicio profesional con la cátedra universitaria y en 2002 culminó su doctorado en la Universidad Escuela Libre de Derecho. Durante una década fue Procurador Constitucional en la Procuraduría General de la República, donde se especializó en la defensa de la Constitución.</p>
+    <p>Ese camino de estudio y servicio lo llevó en 2009 a la Sala Constitucional, que hoy preside. Sigue enseñando en programas de grado, maestría y doctorado, y es autor de once libros y más de treinta artículos especializados.</p>
     <blockquote class="quote">“El costarricense no se vería en una Costa Rica sin la Sala Constitucional.”<cite>— Entrevista con La Nación, 35.º aniversario de la Sala IV</cite></blockquote>
     <a class="btn btn-ink" href="/trayectoria.html">Trayectoria completa</a>
   </div>
@@ -292,7 +292,7 @@ def build_trayectoria():
         dict(y="2024", t="Reconocimiento por su trayectoria académica y labor docente, Poder Judicial del Estado de Oaxaca y Academia Mexicana de Derecho (México).")]
     pub.sort(key=lambda c: first_year(c["y"]))
     body = hero("Trayectoria de vida", "Cuatro décadas de servicio público y academia",
-                "Formación, cargos en la Asamblea Legislativa, el Poder Ejecutivo y la Procuraduría General de la República, y su llegada a la Sala Constitucional.", "Trayectoria")
+                "Estudio, docencia y servicio público: el camino que lo llevó a la Sala Constitucional.", "Trayectoria")
     body += f'''<section class="block"><div class="wrap side-layout">
 <aside><div class="facts"><dl>
 <div><dt>Nombre</dt><dd>Fernando Castillo Víquez</dd></div>

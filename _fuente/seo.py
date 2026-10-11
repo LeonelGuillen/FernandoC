@@ -15,7 +15,7 @@ PAGES = {
     h1="Fernando Castillo Víquez", type="ProfilePage", crumb=None, ogalt="Fernando Castillo Víquez, presidente de la Sala Constitucional de Costa Rica"),
  "trayectoria.html": dict(
     title="Trayectoria de Fernando Castillo Víquez | Magistrado",
-    desc="Formación, cargos y docencia de Fernando Castillo Víquez: asesor legislativo, Procurador Constitucional (1999–2009) y magistrado de la Sala IV desde 2009.",
+    desc="Fernando Castillo Víquez: estudiante de honor de la UCR, catedrático desde 1985, Procurador Constitucional y magistrado de la Sala Constitucional desde 2009.",
     kw_main="trayectoria Fernando Castillo Víquez",
     kw=["Fernando Castillo Víquez biografía", "Procurador Constitucional", "Letrado Mayor Asamblea Legislativa", "magistrado desde 2009", "Escuela Libre de Derecho profesor"],
     h1="Cuatro décadas de servicio público y academia", type="ProfilePage", crumb="Trayectoria", ogalt="Trayectoria de Fernando Castillo Víquez"),
