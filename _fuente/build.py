@@ -222,7 +222,7 @@ def build_index():
     <ul class="roles"><li>Magistrado Sala Constitucional</li><li>Doctor en Derecho Constitucional</li><li>Notario Público</li><li>Profesor universitario</li><li>Conferencista internacional</li></ul>
     <div class="btns"><a class="btn btn-gold" href="/trayectoria.html">Conocer su trayectoria</a><a class="btn btn-ghost" href="/publicaciones.html">Publicaciones</a></div>
   </div>
-  <figure class="portrait"><img src="/assets/img/retrato.webp" alt="Retrato del magistrado Fernando Castillo Víquez" width="496" height="568" fetchpriority="high">
+  <figure class="portrait"><img src="/assets/img/retrato.webp" alt="Retrato del magistrado Fernando Castillo Víquez" width="496" height="568" fetchpriority="high"><span class="shade" aria-hidden="true"></span>
   <figcaption><b>Desde 2009</b>Magistrado propietario de la Sala Constitucional</figcaption></figure>
 </div></section>
 
@@ -231,7 +231,7 @@ def build_index():
   <div class="stat"><b>40+</b><span>años de docencia universitaria</span></div>
   <div class="stat"><b>11</b><span>libros como autor y coautor</span></div>
   <div class="stat"><b>30+</b><span>artículos especializados</span></div>
-  <div class="stat"><b>{len(ponencias)}+</b><span>conferencias y foros</span></div>
+  <div class="stat"><b>{len(ponencias)//10*10}+</b><span>conferencias y foros</span></div>
 </div></section>
 
 <section class="block"><div class="wrap">
