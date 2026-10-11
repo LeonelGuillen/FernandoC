@@ -393,11 +393,31 @@ def build_prensa():
     body = hero("Contexto actual", "La Sala Constitucional hoy",
                 "Análisis, reconocimientos, entrevistas y noticias recientes sobre la Sala Constitucional y la labor de su presidente. Cada nota enlaza a su fuente original.", "Contexto actual")
     ed = EDITORIAL
-    body += f'''<section class="block" style="padding-bottom:0"><div class="wrap"><a class="featured-ed reveal" href="{e(ed["u"])}" target="_blank" rel="noopener">
-<div><div class="eyebrow" style="color:var(--gold-2)">Destacado · {e(ed["src"])} · {e(ed["kind"])} · {e(ed["dl"])}</div>
-<h2>{e(ed["t"])}</h2><p>{e(ed["s"])}</p><span class="go">Leer el editorial en {e(ed["src"])} ↗</span></div>
-<blockquote>“{e(ed["q"])}”<cite>— Editorial, {e(ed["src"])}</cite></blockquote></a></div></section>
-<section class="block"><div class="wrap">
+    ed_kps = [
+        ("SIP", "Máximo galardón de la prensa interamericana", "El Gran Premio Chapultepec de la Sociedad Interamericana de Prensa reconoce a quienes defienden la libertad de expresión. Lo han recibido la Corte Interamericana de Derechos Humanos y Mario Vargas Llosa, entre otros."),
+        ("3", "Fallos que motivaron el premio", "Protección a periodistas frente a acoso y restricciones en conferencias de prensa, anulación de la subasta de frecuencias de radio y televisión por afectar el pluralismo, y rechazo a presiones indirectas contra medios."),
+        ("2024", "Base de la Ley de Acceso a la Información", "El editorial destaca que la jurisprudencia de la Sala sirvió de fundamento a la Ley Marco de Acceso a la Información Pública, vigente desde noviembre de 2024."),
+        ("Mayo", "Orden de reglamentar la ley", "La Sala ordenó al Poder Ejecutivo subsanar la falta de reglamento de esa ley, un pendiente que el editorial señala como parte del contexto del premio."),
+        ("Bogotá", "Entrega en octubre de 2026", "El premio se entrega en la 82.ª Asamblea General de la SIP, del 22 al 25 de octubre de 2026."),
+        ("Américas", "Referente regional", "Para el editorial, la jurisprudencia de la Sala sobre libertad de prensa y acceso a la información figura entre las más sólidas de los tribunales constitucionales del continente."),
+    ]
+    body += f'''<section class="block"><div class="wrap">
+<div class="eyebrow">Destacado · Editorial</div>
+<div class="grid-2" style="align-items:start;gap:44px">
+<div class="reveal">
+<h2>{e(ed["t"])}</h2>
+<p class="count" style="margin-bottom:18px">{e(ed["src"])} · Editorial · {e(ed["dl"])}</p>
+<p>En su editorial, La Nación celebra que la Sociedad Interamericana de Prensa haya otorgado a la Sala Constitucional el Gran Premio Chapultepec, su máxima distinción, por una línea de fallos en defensa de la libertad de prensa, el acceso a la información pública y los derechos de la ciudadanía.</p>
+<blockquote class="quote">“{e(ed["q"])}”<cite>— Editorial, {e(ed["src"])}</cite></blockquote>
+<p>El texto subraya que esa jurisprudencia dio sustento a la Ley Marco de Acceso a la Información Pública y sostiene que el reconocimiento llega en un momento crucial, cuando el acceso a la información enfrenta presiones y la ley aún espera su reglamento.</p>
+<a class="btn btn-ink" href="{e(ed["u"])}" target="_blank" rel="noopener">Leer el editorial completo en {e(ed["src"])} ↗</a>
+</div>
+<div class="interview">{"".join(f'<div class="kp reveal"><span class="fig">{f}</span><h3>{t}</h3><p>{d}</p></div>' for f,t,d in ed_kps)}</div>
+</div>
+<p class="note">Resumen elaborado a partir del editorial de {e(ed["src"])} del {e(ed["dl"])} y de la nota de El Financiero sobre el premio. El texto íntegro y sus derechos pertenecen al medio.</p>
+</div></section>
+'''
+    body += f'''<section class="block"><div class="wrap">
 <div class="eyebrow">Entrevista destacada</div>
 <div class="grid-2" style="align-items:start;gap:44px">
 <div class="reveal">
@@ -471,7 +491,7 @@ def build_contacto():
 <h2>¿En qué podemos ayudarle?</h2>
 <p class="lead">Complete el formulario y su mensaje llegará directamente. Se responderá a la brevedad posible.</p>
 <div class="notice" style="margin:26px 0"><b>Importante:</b> por la naturaleza del cargo, no se atienden por este medio consultas sobre expedientes, recursos en trámite ni solicitudes de criterio jurídico. Para gestiones ante la Sala Constitucional utilice los <a href="https://salaconstitucional.poder-judicial.go.cr/" rel="noopener">canales oficiales del Poder Judicial</a>.</div>
-<img src="/assets/img/sala-constitucional.webp" alt="Integrantes de la Sala Constitucional" loading="lazy" style="border-radius:14px;box-shadow:var(--shadow)">
+<figure style="margin:0"><img src="/assets/img/sala-constitucional.webp" alt="Magistradas y magistrados de la Sala Constitucional de Costa Rica en su sala de sesiones" loading="lazy" width="1440" height="960" style="border-radius:14px;box-shadow:var(--shadow)"><figcaption class="note" style="border:0;margin-top:10px;padding:0">Integrantes de la Sala Constitucional de la Corte Suprema de Justicia de Costa Rica.</figcaption></figure>
 </div>
 <form class="form" id="contact-form" novalidate>
   <div class="row"><div><label for="nombre">Nombre completo</label><input id="nombre" name="nombre" required autocomplete="name"></div>
