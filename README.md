@@ -14,7 +14,7 @@ _fuente/             ← generador (python3 build.py), datos (data.py) y SEO (se
 ```
 
 ## Publicar
-**Opción A – Git (recomendada):** subir esta carpeta a un repo de GitHub → Cloudflare → Workers & Pages → Create → Pages → Connect to Git, perfecto.
+**Opción A – Git (recomendada):** subir esta carpeta a un repo de GitHub → Cloudflare → Workers & Pages → Create → Pages → Connect to Git.
 Build command: *(vacío)* · Output directory: `public`.
 
 **Opción B – Wrangler:** `npx wrangler pages deploy public --project-name fernandocastillocr`

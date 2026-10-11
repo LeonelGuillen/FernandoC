@@ -193,7 +193,7 @@ def book_card(b):
     cover = (f'<div class="cover"><img src="/assets/img/{b["img"]}" alt="Portada: {e(b["t"])}" loading="lazy"></div>' if b.get("img")
              else f'<div class="cover gen"><small>Fernando Castillo Víquez</small><b>{e(b["t"])}</b><small>{e(b["pub"].split("(")[0].strip())}</small></div>')
     yr = b["y"] or "s. f."
-    link = f'<a href="{b["buy"]}" target="_blank" rel="noopener">Dónde adquirirlo ↗</a>' if b.get("buy") else ""
+    link = ""
     return f'<article class="book reveal">{cover}<div><h3>{e(b["t"])}</h3><p>{e(b["role"])} · {e(b["pub"])} · {yr}</p></div>{link}</article>'
 
 # ---------- pages ----------

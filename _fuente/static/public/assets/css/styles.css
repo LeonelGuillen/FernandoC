@@ -297,3 +297,11 @@ textarea{min-height:150px;resize:vertical}
 .portrait .shade{border-radius:0 0 18px 18px}
 @media (max-width:900px){.hero .eyebrow::before{display:none}.portrait{order:-1;max-width:290px;margin-bottom:12px}.hero-grid{padding-block:44px 72px}}
 @media (max-width:900px){.portrait{margin-bottom:44px}.portrait figcaption{bottom:-38px;padding:10px 16px;max-width:250px}.portrait figcaption b{font-size:1.1rem}.portrait figcaption{font-size:.78rem}}
+
+/* Hover legible sobre fondos oscuros */
+.brand:hover,.brand:focus-visible{color:#fff}
+.brand:hover .brand-name{color:var(--gold-2)}
+.brand:hover .brand-mark{background:var(--gold-2);color:var(--ink)}
+.brand-name,.brand-mark{transition:color .2s,background .2s}
+.crumbs a:hover{color:var(--gold-2)}
+.site-header a:hover,.hero a:not(.btn):hover,.page-hero a:hover,section.dark a:not(.btn):hover{color:var(--gold-2)}
