@@ -2,7 +2,7 @@
 """Genera el sitio estático en ./out/public  (python3 build.py)"""
 import json, re, os, shutil, html
 from datetime import date
-from data import SITE, BOOKS, NEWS, INTERVIEW, fix, RECOG_PERSONAL, RECOG_SALA, INDICATORS
+from data import SITE, BOOKS, NEWS, INTERVIEW, fix, RECOG_PERSONAL, RECOG_SALA, INDICATORS, EDITORIAL, ELECTION, ART158
 import seo
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -80,7 +80,7 @@ articulos = [article(a) for a in articulos_raw]
 
 # ---------- layout ----------
 NAV = [("index.html", "Inicio"), ("trayectoria.html", "Trayectoria"), ("publicaciones.html", "Publicaciones"),
-       ("participaciones.html", "Participaciones"), ("prensa.html", "Prensa")]
+       ("participaciones.html", "Participaciones"), ("contexto-actual.html", "Contexto actual")]
 ICON = {
  "gavel": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4l6 6M12 6l6 6M5 21h9M9.5 8.5l6 6M4 13l7-7 3 3-7 7z"/></svg>',
  "cap": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6"/></svg>',
@@ -260,8 +260,8 @@ def build_index():
 
 {recog_block(True)}
 <section class="block alt"><div class="wrap">
-  <div class="sec-head"><div><div class="eyebrow">Actualidad</div><h2>En los medios</h2></div><a class="btn btn-ink" href="/prensa.html">Toda la prensa</a></div>
-  <div class="grid-3">{news_card(NEWS[0], True)}{news_card(NEWS[1])}{news_card(NEWS[4])}</div>
+  <div class="sec-head"><div><div class="eyebrow">Actualidad</div><h2>En los medios</h2></div><a class="btn btn-ink" href="/contexto-actual.html">Ver contexto actual</a></div>
+  <div class="grid-3">{news_card(EDITORIAL, True)}{"".join(news_card(n) for n in [x for x in NEWS if x is not EDITORIAL][:2])}</div>
 </div></section>
 
 <section class="block"><div class="wrap">
@@ -304,7 +304,10 @@ def build_trayectoria():
 </dl></div>
 <p style="margin-top:16px"><button class="btn btn-ink" type="button" data-print>Imprimir / PDF</button></p></aside>
 <div>
-<div class="eyebrow">A · Estudios realizados</div><h2>Formación</h2>{tl(estudios, ["Doctorado"])}
+<div class="eyebrow">Su llegada a la Sala</div><h2>Cómo fue electo magistrado</h2>
+<p class="lead" style="margin-bottom:22px">{e(ART158)}</p>
+<div class="election">{"".join(f'<article class="el-step reveal"><span class="el-date">{e(x["y"])}</span><div><h3>{e(x["t"])}</h3><p>{e(x["s"])}</p><a href="{e(x["u"])}" target="_blank" rel="noopener">Fuente: {e(x["src"])} ↗</a></div></article>' for x in ELECTION)}</div>
+<div class="eyebrow" style="margin-top:56px">A · Estudios realizados</div><h2>Formación</h2>{tl(estudios, ["Doctorado"])}
 <div class="eyebrow" style="margin-top:56px">B · Cargos desempeñados</div><h2>Servicio público</h2>
 {tl(pub, ["Magistrado", "Procurador Constitucional", "Letrado Mayor", "Presidente de la Sala", "Reelegido", "Reconocimiento"])}
 <div class="eyebrow" style="margin-top:56px" id="docencia">C · Docencia</div><h2>Cátedra universitaria</h2>
@@ -387,9 +390,14 @@ def build_prensa():
         ("Gini", "Inseguridad y desigualdad", "Identifica la inseguridad ciudadana como uno de los problemas centrales del país y atribuye su causa de fondo a la desigualdad social."),
         ("1949", "Solidez democrática", "Valora que la Constitución de 1949 creó un diseño institucional que dificulta el desmontaje de los órganos de control."),
     ]
-    body = hero("Prensa y actualidad", "En los medios",
-                "Entrevistas, perfiles y noticias sobre su labor al frente de la Sala Constitucional. Cada nota enlaza a la publicación original.", "Prensa")
-    body += f'''<section class="block"><div class="wrap">
+    body = hero("Contexto actual", "La Sala Constitucional hoy",
+                "Análisis, reconocimientos, entrevistas y noticias recientes sobre la Sala Constitucional y la labor de su presidente. Cada nota enlaza a su fuente original.", "Contexto actual")
+    ed = EDITORIAL
+    body += f'''<section class="block" style="padding-bottom:0"><div class="wrap"><a class="featured-ed reveal" href="{e(ed["u"])}" target="_blank" rel="noopener">
+<div><div class="eyebrow" style="color:var(--gold-2)">Destacado · {e(ed["src"])} · {e(ed["kind"])} · {e(ed["dl"])}</div>
+<h2>{e(ed["t"])}</h2><p>{e(ed["s"])}</p><span class="go">Leer el editorial en {e(ed["src"])} ↗</span></div>
+<blockquote>“{e(ed["q"])}”<cite>— Editorial, {e(ed["src"])}</cite></blockquote></a></div></section>
+<section class="block"><div class="wrap">
 <div class="eyebrow">Entrevista destacada</div>
 <div class="grid-2" style="align-items:start;gap:44px">
 <div class="reveal">
@@ -406,10 +414,10 @@ def build_prensa():
 </div></section>
 <section class="block alt"><div class="wrap">
 <div class="sec-head"><div><div class="eyebrow">Cobertura</div><h2>Notas recientes</h2></div></div>
-<div class="grid-3">{"".join(news_card(n, i==0) for i,n in enumerate(NEWS))}</div>
+<div class="grid-3">{"".join(news_card(n, i==0) for i,n in enumerate([x for x in NEWS if x is not EDITORIAL]))}</div>
 <p class="note">¿Es periodista? Las solicitudes de entrevista pueden enviarse desde la página de <a href="/contacto.html">contacto</a>.</p>
 </div></section>''' + indicators_block() + recog_block() + videos_block()
-    return page("prensa.html", "Prensa y actualidad | Fernando Castillo Víquez",
+    return page("contexto-actual.html", "Contexto actual | Fernando Castillo Víquez",
                 "Entrevistas, perfiles y noticias sobre Fernando Castillo Víquez, presidente de la Sala Constitucional de Costa Rica.", body)
 
 VIDEOS = [("E4O-0gI2j0o","Juramentación para un nuevo período en la Sala Constitucional","Extra TV · noviembre de 2025. Presta juramento ante la Asamblea Legislativa para un nuevo período de ocho años como magistrado."),
@@ -438,7 +446,7 @@ def recog_block(compact=False):
     sala = "".join(f'''<a class="kp reveal" href="{e(r["u"])}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block"><span class="fig">{e(r["fig"])}</span><h3>{e(r["t"])}</h3>
 <p><b>{e(r["org"])}, {r["y"]}.</b> {e(r["s"])}</p><p style="margin-top:8px;font-size:.8rem;color:var(--gold-ink);font-weight:600">Fuente: {e(r["src"])} ↗</p></a>''' for r in (RECOG_SALA[:3] if compact else RECOG_SALA))
     if compact:
-        return f'''<section class="block"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Reconocimientos</div><h2>Una Sala reconocida internacionalmente</h2></div><a class="btn btn-ink" href="/prensa.html#reconocimientos">Ver todos</a></div>
+        return f'''<section class="block"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Reconocimientos</div><h2>Una Sala reconocida internacionalmente</h2></div><a class="btn btn-ink" href="/contexto-actual.html#reconocimientos">Ver todos</a></div>
 <div class="grid-3">{sala}</div></div></section>'''
     return f'''<section class="block" id="reconocimientos"><div class="wrap">
 <div class="sec-head"><div><div class="eyebrow">Reconocimientos</div><h2>Distinciones y logros</h2></div><p class="lead">Al magistrado y a la Sala Constitucional que preside.</p></div>
@@ -492,7 +500,7 @@ def main():
     for f in os.listdir(os.path.join(ROOT, "img")):
         shutil.copy(os.path.join(ROOT, "img", f), os.path.join(PUB, "assets", "img", f))
     pages = {"index.html": build_index(), "trayectoria.html": build_trayectoria(), "publicaciones.html": build_publicaciones(),
-             "participaciones.html": build_participaciones(), "prensa.html": build_prensa(), "contacto.html": build_contacto(), "404.html": build_404()}
+             "participaciones.html": build_participaciones(), "contexto-actual.html": build_prensa(), "contacto.html": build_contacto(), "404.html": build_404()}
     for n, h in pages.items():
         h = re.sub(r'href="/([a-z0-9\-]+)\.html(#[^"]*)?"', lambda m: f'href="/{m.group(1)}{m.group(2) or ""}"', h)
         open(os.path.join(PUB, n), "w", encoding="utf-8").write(h)
@@ -500,12 +508,12 @@ def main():
     IMGS = {"index.html": [("retrato.webp", "Fernando Castillo Víquez, presidente de la Sala Constitucional"), ("conferencia.webp", "Fernando Castillo Víquez durante una intervención")],
             "publicaciones.html": [(b["img"], "Portada del libro " + b["t"]) for b in BOOKS if b.get("img")],
             "contacto.html": [("sala-constitucional.webp", "Integrantes de la Sala Constitucional de Costa Rica")]}
-    PRI = {"index.html": "1.0", "trayectoria.html": "0.9", "publicaciones.html": "0.9", "prensa.html": "0.8", "participaciones.html": "0.7", "contacto.html": "0.5"}
+    PRI = {"index.html": "1.0", "trayectoria.html": "0.9", "publicaciones.html": "0.9", "contexto-actual.html": "0.8", "participaciones.html": "0.7", "contacto.html": "0.5"}
     urls = ""
     for n in pages:
         if n == "404.html": continue
         im = "".join(f'<image:image><image:loc>{SITE}/assets/img/{f}</image:loc></image:image>' for f, _ in IMGS.get(n, []))
-        urls += f'<url><loc>{seo.url(n)}</loc><lastmod>{today}</lastmod><changefreq>{"weekly" if n=="prensa.html" else "monthly"}</changefreq><priority>{PRI[n]}</priority>{im}</url>\n'
+        urls += f'<url><loc>{seo.url(n)}</loc><lastmod>{today}</lastmod><changefreq>{"weekly" if n=="contexto-actual.html" else "monthly"}</changefreq><priority>{PRI[n]}</priority>{im}</url>\n'
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + urls + "</urlset>\n"
     llms = "# Fernando Castillo Víquez\n\n> Sitio oficial del magistrado Fernando Castillo Víquez, presidente de la Sala Constitucional de la Corte Suprema de Justicia de Costa Rica (magistrado desde 2009, reelecto en 2025). Doctor en Derecho, catedrático y autor.\n\n## Páginas\n" + "".join(f"- [{seo.PAGES[n]['title']}]({seo.url(n)}): {seo.PAGES[n]['desc']}\n" for n in pages if n != "404.html") + "\n## Nota\nSitio personal de carácter académico. Las resoluciones oficiales se consultan en https://salaconstitucional.poder-judicial.go.cr/\n"
     open(os.path.join(PUB, "llms.txt"), "w", encoding="utf-8").write(llms)

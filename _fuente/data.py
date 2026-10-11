@@ -144,7 +144,33 @@ INDICATORS = [
   srcs=[("Informe CEJA 2025 (PDF)", "https://cejamericas.org/wp-content/uploads/2025/12/I-Indice-de-Congestion-Judicial-en-las-Americas-CEJA-2025_DICIEMBRE.pdf"), ("El Mundo CR, 11 nov 2025", "https://elmundo.cr/costa-rica/costa-rica-lidera-en-resolucion-judicial-en-latinoamerica-segun-estudio-del-ceja/")]),
 ]
 NEWS.insert(0, dict(d="2025-11-11", dl="nov 2025", src="CEJA", kind="Análisis", t=INDICATORS[1]["t"],
-     s="Tasa de resolución de 1,07 en 2024, la más alta de 13 países; único con equilibrio sostenido proyectado a 2030.", u="/prensa.html#ceja"))
+     s="Tasa de resolución de 1,07 en 2024, la más alta de 13 países; único con equilibrio sostenido proyectado a 2030.", u="/contexto-actual.html#ceja"))
 NEWS.insert(0, dict(d="2025-10-31", dl="oct 2025", src="World Justice Project", kind="Análisis", t=INDICATORS[0]["t"],
-     s="Puesto 28 de 143 en el mundo y 2.º de 32 en la región; 2.º regional en límites al poder gubernamental.", u="/prensa.html#wjp"))
+     s="Puesto 28 de 143 en el mundo y 2.º de 32 en la región; 2.º regional en límites al poder gubernamental.", u="/contexto-actual.html#wjp"))
 NEWS.sort(key=lambda n: n["d"], reverse=True)
+
+# Destacado: editorial de La Nación sobre el Gran Premio Chapultepec
+EDITORIAL = dict(d="2026-08-20", dl="20 ago 2026", src="La Nación", kind="Editorial", feat=True,
+     t="Editorial: La Sala Constitucional no necesita premios, pero este llega en un momento crucial",
+     s="El editorial de La Nación destaca el Gran Premio Chapultepec otorgado por la SIP y valora la jurisprudencia de la Sala sobre libertad de prensa y acceso a la información pública, que sirvió de base a la Ley Marco de Acceso a la Información vigente desde 2024.",
+     q="La Sala Constitucional no necesita premios para reafirmar su trascendente labor.",
+     u="https://www.nacion.com/opinion/editorial/editorial-la-sala-constitucional-no-necesita/3ZSATNQL4JAQ5A5QSL5Z6VMGBQ/story/")
+NEWS.append(EDITORIAL)
+NEWS.sort(key=lambda n: n["d"], reverse=True)
+
+# Cómo llegó a la Sala Constitucional (verificado en prensa y comunicados oficiales)
+ELECTION = [
+ dict(y="16 nov 2009", t="Electo magistrado de la Sala Constitucional",
+      s="La Asamblea Legislativa lo eligió con 39 votos de 44 diputados presentes, cuando se desempeñaba como Procurador Constitucional. Ocupó la plaza de Luis Fernando Solano Carrera, vacante desde hacía 21 meses.",
+      u="https://www.nacion.com/el-pais/congreso-elige-a-fernando-castillo-como-magistrado-de-sala-iv/6ZOKMP4FIJGVZGKFYGRS5KWI4U/story/", src="La Nación"),
+ dict(y="16 nov 2017", t="Primera reelección",
+      s="Con la recomendación favorable de la Comisión de Nombramientos, quedó reelegido para un segundo período de ocho años al vencer el plazo legal sin que el Plenario votara en contra, conforme al artículo 158 de la Constitución.",
+      u="https://www.crhoy.com/nacionales/fernando-castillo-fue-reelecto-como-magistrado-de-sala-iv/", src="CRHoy"),
+ dict(y="2018 – 2020", t="Presidente de la Sala Constitucional",
+      s="Asumió la presidencia de forma interina en agosto de 2018 y en mayo de 2020 el pleno de magistrados lo eligió por unanimidad como presidente.",
+      u="https://salaconstitucional.poder-judicial.go.cr/index.php/sala-de-prensa/comunicados/sala-constitucional-elige-al-doctor-fernando-castillo-como-su-presidente", src="Sala Constitucional"),
+ dict(y="10 nov 2025", t="Segunda reelección",
+      s="El Plenario votó 24 a favor y 20 en contra; para no reelegirlo se requerían al menos 38 votos (dos tercios de la Asamblea). Fue juramentado el 17 de noviembre de 2025 para su tercer período.",
+      u="https://delfino.cr/2025/11/fernando-castillo-presidente-de-la-sala-iv-reelecto-magistrado-por-ocho-anos-mas", src="Delfino.cr"),
+]
+ART158 = "Según el artículo 158 de la Constitución Política, los magistrados de la Corte Suprema se eligen por ocho años y se consideran reelegidos por períodos iguales, salvo que al menos dos terceras partes del total de diputados voten en contra."

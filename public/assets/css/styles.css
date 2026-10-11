@@ -305,3 +305,22 @@ textarea{min-height:150px;resize:vertical}
 .brand-name,.brand-mark{transition:color .2s,background .2s}
 .crumbs a:hover{color:var(--gold-2)}
 .site-header a:hover,.hero a:not(.btn):hover,.page-hero a:hover,section.dark a:not(.btn):hover{color:var(--gold-2)}
+
+/* Destacado editorial */
+.featured-ed{display:grid;grid-template-columns:1.4fr 1fr;gap:44px;align-items:center;background:linear-gradient(120deg,var(--ink),var(--ink-3));color:#c5cddb;border-radius:22px;padding:48px;text-decoration:none;border:1px solid rgba(207,176,122,.35);transition:.25s}
+.featured-ed:hover{color:#c5cddb;transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(14,26,43,.6)}
+.featured-ed h2{color:#fff;font-size:clamp(1.7rem,3vw,2.4rem)}
+.featured-ed p{color:#b9c2d3}
+.featured-ed .go{color:var(--gold-2);font-weight:600;font-size:.9rem}
+.featured-ed blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:1.7rem;line-height:1.3;color:#fff;border-left:2px solid var(--gold-2);padding-left:24px}
+.featured-ed blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:.8rem;color:var(--gold-2);margin-top:12px}
+@media (max-width:860px){.featured-ed{grid-template-columns:1fr;padding:28px 22px;gap:24px}.featured-ed blockquote{font-size:1.35rem}}
+
+/* Elección a la Sala */
+.election{display:grid;gap:14px;position:relative}
+.el-step{display:grid;grid-template-columns:130px 1fr;gap:24px;background:var(--white);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:20px 22px}
+.el-date{font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--gold-ink);font-variant-numeric:lining-nums;line-height:1.3}
+.el-step h3{font-size:1.3rem;margin:0 0 6px}
+.el-step p{font-size:.95rem;margin:0 0 8px}
+.el-step a{font-size:.8rem;font-weight:600;text-decoration:none}
+@media (max-width:600px){.el-step{grid-template-columns:1fr;gap:4px}}

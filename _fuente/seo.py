@@ -31,12 +31,12 @@ PAGES = {
     kw_main="conferencias Fernando Castillo Víquez",
     kw=["conferencista Derecho Constitucional", "control de convencionalidad", "judicialización de la salud", "Jornadas de Derecho Constitucional", "Conferencia Iberoamericana de Justicia Constitucional"],
     h1="Conferencias, foros y comisiones", type="CollectionPage", crumb="Participaciones", ogalt="Conferencias de Fernando Castillo Víquez"),
- "prensa.html": dict(
-    title="Prensa y entrevistas | Fernando Castillo Víquez",
-    desc="Entrevistas y noticias sobre el presidente de la Sala Constitucional: independencia judicial, reelección 2025 y los retos de la Sala IV.",
-    kw_main="Fernando Castillo entrevista",
-    kw=["presidente Sala IV entrevista", "Fernando Castillo La Nación", "independencia judicial Costa Rica", "reelección magistrado 2025", "Sala Constitucional 35 años"],
-    h1="En los medios", type="CollectionPage", crumb="Prensa", ogalt="Fernando Castillo Víquez en los medios"),
+ "contexto-actual.html": dict(
+    title="Contexto actual de la Sala Constitucional | F. Castillo",
+    desc="La Sala Constitucional hoy: indicadores internacionales, reconocimientos, entrevistas y noticias sobre la labor de su presidente, Fernando Castillo Víquez.",
+    kw_main="Sala Constitucional Costa Rica actualidad",
+    kw=["presidente Sala IV entrevista", "Premio Chapultepec Sala Constitucional", "independencia judicial Costa Rica", "Índice de Estado de Derecho Costa Rica", "CEJA congestión judicial Costa Rica"],
+    h1="La Sala Constitucional hoy", type="CollectionPage", crumb="Contexto actual", ogalt="Contexto actual de la Sala Constitucional de Costa Rica"),
  "contacto.html": dict(
     title="Contacto | Magistrado Fernando Castillo Víquez",
     desc="Invitaciones a conferencias, actividades académicas y solicitudes de prensa para el magistrado Fernando Castillo Víquez. No atiende consultas de expedientes.",
@@ -94,7 +94,7 @@ def graph(fname):
                 "author": {"@id": PID}, "datePublished": str(b["y"]) if b["y"] else None,
                 "publisher": {"@type": "Organization", "name": b["pub"]},
                 "image": SITE + "/assets/img/" + b["img"] if b.get("img") else None}.items() if v}} for i, b in enumerate(BOOKS)]})
-    if fname == "prensa.html" and VIDEO_DATES:  # Google exige uploadDate; completar VIDEO_DATES
+    if fname == "contexto-actual.html" and VIDEO_DATES:  # Google exige uploadDate; completar VIDEO_DATES
         for vid, name in VIDEOS:
             if vid not in VIDEO_DATES: continue
             g.append({"@type": "VideoObject", "name": name, "description": name, "thumbnailUrl": SITE + f"/assets/img/video-{vid}.webp",
