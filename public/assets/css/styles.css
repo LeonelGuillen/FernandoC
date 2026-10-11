@@ -334,3 +334,4 @@ textarea{min-height:150px;resize:vertical}
 .stat::after{content:"";display:block;width:28px;height:2px;background:var(--gold-2);margin:12px auto 0;opacity:.6;transform:scaleX(0);transition:transform .8s .4s}
 .stat:has(b.done)::after{transform:scaleX(1)}
 @media (prefers-reduced-motion:reduce){.stat b.done{animation:none}.stat::after{transform:none}}
+.nowrap{white-space:nowrap}

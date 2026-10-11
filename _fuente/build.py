@@ -217,7 +217,7 @@ def build_index():
 <section class="hero"><div class="wrap hero-grid">
   <div>
     <div class="eyebrow">Corte Suprema de Justicia · Costa Rica</div>
-    <h1>Fernando <em>Castillo Víquez</em></h1>
+    <h1>Fernando <span class="nowrap">Castillo Víquez</span></h1>
     <p class="lead">Presidente de la Sala Constitucional. Doctor en Derecho, catedrático universitario y autor de obras de referencia en Derecho Constitucional y Parlamentario.</p>
     <ul class="roles"><li>Magistrado Sala Constitucional</li><li>Doctor en Derecho Constitucional</li><li>Notario Público</li><li>Profesor universitario</li><li>Conferencista internacional</li></ul>
     <div class="btns"><a class="btn btn-gold" href="/trayectoria.html">Conocer su trayectoria</a><a class="btn btn-ghost" href="/publicaciones.html">Publicaciones</a></div>
