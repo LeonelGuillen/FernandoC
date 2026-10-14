@@ -28,16 +28,34 @@ BOOKS = [
          desc="Analiza el sistema económico desde el Derecho de la Constitución: la opción del constituyente de 1949, las libertades económicas, la empresa pública y la planificación."),
     dict(t="Ejecución de sentencias en el Derecho Público costarricense", role="Autor", pub="Editorial Juritexto", y=2009, feat=True),
     dict(t="La protección de los derechos fundamentales en la jurisdicción constitucional y sus vicisitudes", role="Autor", pub="Editorial Juritexto", y=2008, feat=True),
-    dict(t="Hacia un populismo constitucional", role="Autor", pub="Instituto de Derecho Constitucional del Estado de Querétaro (México)", y=None,
-         note="Mencionado por el autor en entrevista con La Nación (2024). Completar año y ficha."),
+    dict(t="Hacia un populismo constitucional", role="Autor", pub="Editorial Investigaciones Jurídicas S.A.", y=2022,
+         desc="Desarrolla una tesis que ya había adelantado en 2017 en la Revista de Derecho Electoral del Tribunal Supremo de Elecciones."),
     dict(t="La Ley de Presupuesto", role="Autor", pub="Prodel, IIDH-CAPEL", y=1997),
     dict(t="Reflexiones sobre el control de constitucionalidad en Costa Rica. Las cuestiones de constitucionalidad", role="Tesis doctoral", pub="Universidad Escuela Libre de Derecho", y=2002),
+    dict(t="El constitucionalismo de los derechos y su construcción jurisprudencial", role="Coautor (obra colectiva)", pub="Tirant lo Blanch, Ciudad de México", y=2025),
+    dict(t="La Constitución Política 75 años después", role="Coautor (obra colectiva)", pub="Universidad Escuela Libre de Derecho", y=2024),
+    dict(t="Impacto y desafíos a medio siglo de la Convención Americana sobre Derechos Humanos", role="Coautor (obra colectiva)", pub="Centro de Estudios Políticos y Constitucionales, Madrid", y=2021),
+    dict(t="El derecho a la salud de las personas que viven con VIH en la jurisprudencia de la Sala Constitucional de Costa Rica", role="Coautor (obra colectiva)", pub="Instituto de Estudios Constitucionales del Estado de Querétaro (México)", y=2020),
+    dict(t="Tratado de Derecho a la Salud, tomo III", role="Coautor (obra colectiva)", pub="Abeledo-Perrot, Buenos Aires", y=2013),
     dict(t="Convención Americana sobre Derechos Humanos anotada y concordada con la jurisprudencia de la Corte IDH", role="Coautor", pub="Corte Suprema de Justicia, Escuela Judicial", y=2013),
     dict(t="Código Procesal Contencioso Administrativo, anotado con las actas legislativas", role="Coautor", pub="Procuraduría General de la República y Colegio de Abogados", y=2007),
     dict(t="Reflexiones sobre el Poder Legislativo", role="Coautor", pub="Asamblea Legislativa", y=1989),
     dict(t="Constitución Política anotada y concordada (actualización de la obra de Carlos Arguedas Ramírez)", role="Coautor", pub="Asamblea Legislativa / Editorial Juricentro", y=1985),
     dict(t="Ley de Inquilinato y Disposiciones sobre Desahucio, anotada y concordada", role="Coautor", pub="Asamblea Legislativa / Editorial Juricentro", y=1985),
 ]
+
+# Enlaces a artículos publicados en línea (verificados, oct 2026). Clave: fragmento del texto del CV
+ART_LINKS = {
+    "efectos de la admisibilidad de la acción de inconstitucionalidad": "https://revistasalacons.poder-judicial.go.cr/images/2025/PDF/Revista_%20Sala_Constitucional_Nro._7.pdf",
+    "retroactividad en la jurisprudencia ordinaria y constitucional en materia tributaria": "https://revistasalacons.poder-judicial.go.cr/images/2020/Autor/PDF/La_retroactividad_en_la_jurisprudencia_ordinaria_y_constitucional_en_materia_tributaria_.pdf",
+    "desdoblamientos de la jurisdicción constitucional de la libertad": "https://revista.uescuelalibre.cr/index.php/tribunalibre/article/download/52/83/153",
+    "hacia un populismo constitucional. En Revista": "https://tse.go.cr/revista/art/23/castillo_viquez.pdf",
+}
+
+# Enlaces a programas de eventos (verificados, oct 2026). Clave: fragmento del texto del CV
+P_LINKS = {
+    "impacto nacional y cumplimiento de las decisiones de la Corte IDH": "https://www.upf.edu/documents/6764143/227241121/Programa_50_CIDH_Definitiu.pdf/cbd1e01d-eb46-27e8-7c2a-00a1761c90ec",
+}
 
 # Prensa y actualidad (verificado por búsqueda, octubre 2026)
 NEWS = [
@@ -71,6 +89,45 @@ NEWS.append(dict(d="2024-07-22", dl="22 jul 2024", src="El Mundo CR", kind="Reco
      t="Magistrado Fernando Castillo recibe reconocimiento por su destacada trayectoria académica y labor docente",
      s="El Poder Judicial de Oaxaca y la Academia Mexicana de Derecho reconocieron su trayectoria como docente desde 1985.",
      u="https://elmundo.cr/costa-rica/magistrado-fernando-castillo-recibe-reconocimiento-por-su-destacada-trayectoria-academica-y-labor-docente/"))
+
+# Prensa adicional verificada (octubre 2026)
+NEWS += [
+    dict(d="2026-08-05", dl="5 ago 2026", src="Semanario Universidad", kind="Declaraciones",
+         t="Diputados pueden devolver lista de candidaturas de magistrados «siempre y cuando nos digan la justificación»",
+         s="Comparecencia ante una comisión legislativa sobre las nóminas para el nombramiento de magistrados suplentes de la Sala.",
+         u="https://semanariouniversidad.com/?p=388641"),
+    dict(d="2026-05-29", dl="29 may 2026", src="Semanario Universidad", kind="Entrevista",
+         t="Presidente de Sala IV lamenta falta de nombramiento de suplentes, pero confía en pronto acuerdo",
+         s="Advierte sobre el efecto en la carga de trabajo de la Sala de no contar con magistrados suplentes nombrados.",
+         u="https://semanariouniversidad.com/sin-categoria/presidente-de-sala-iv-lamenta-falta-de-nombramiento-de-suplentes-pero-confia-en-pronto-acuerdo-creo-que-las-personas-son-seres-racionales/"),
+    dict(d="2024-09-24", dl="24 sep 2024", src="Facultad de Derecho, UCR", kind="Evento",
+         t="35 aniversario de la Sala Constitucional",
+         s="Tuvo a su cargo las palabras de apertura de la actividad académica por los 35 años de la Sala, organizada en la Facultad de Derecho de la Universidad de Costa Rica.",
+         u="https://derecho.ucr.ac.cr/sites/default/files/events/documentos/Programa_35_aniversario_Sala_Constitucional.pdf"),
+    dict(d="2016-08-21", dl="ago 2016", src="Comisión de Venecia (Consejo de Europa)", kind="Nombramiento",
+         t="Costa Rica designa a sus representantes ante la Comisión de Venecia",
+         s="Tras la adhesión de Costa Rica a la Comisión Europea para la Democracia por el Derecho, fue designado miembro suplente en representación del país.",
+         u="https://www.coe.int/en/web/venice-commission/-/event-2278"),
+]
+NEWS += [
+    dict(d="2026-08-18", dl="18 ago 2026", src="El Mundo CR", kind="Noticia",
+         t="Sala IV celebra su premio por garantizar el ejercicio libre del periodismo",
+         s="Como presidente de la Sala, valoró el Gran Premio Chapultepec 2026 de la SIP y reafirmó que la libertad de expresión, de prensa y el acceso a la información son pilares de la democracia.",
+         u="https://elmundo.cr/costa-rica/sala-iv-celebra-su-premio-por-garantizar-el-ejercicio-libre-del-periodismo/"),
+    dict(d="2024-09-01", dl="sep 2024", src="Revista de la Sala Constitucional", kind="Publicación",
+         t="Prólogo al número monográfico «Modelos de justicia constitucional (Derecho comparado)»",
+         s="Como presidente de la Sala y director del Consejo Editorial, prologa el n.º 6 de la revista: destaca la jurisdicción constitucional como garantía de la democracia y el valor del derecho comparado para pensar reformas.",
+         u="https://revistasalacons.poder-judicial.go.cr/images/2024/Articulos/PDF/Revista_Sala_Constitucional_Nro._6.pdf"),
+    dict(d="2019-11-15", dl="15 nov 2019", src="Universitat Pompeu Fabra · Corte IDH", kind="Evento internacional",
+         t="Medio siglo de la Convención Americana sobre Derechos Humanos",
+         s="Participó en la sesión de clausura, en Barcelona, junto con presidentes de tribunales constitucionales de Colombia y Bolivia, una jueza de la Corte Suprema de Uruguay y un juez de la Corte IDH.",
+         u="https://www.upf.edu/documents/6764143/227241121/Programa_50_CIDH_Definitiu.pdf/cbd1e01d-eb46-27e8-7c2a-00a1761c90ec"),
+    dict(d="2011-09-20", dl="20 sep 2011", src="Acento (República Dominicana)", kind="Entrevista",
+         t="«La mayor sabiduría es saber elegir a los mejores para jueces constitucionales»",
+         s="Entrevista sobre los desafíos de la justicia constitucional en América Latina: acceso a la justicia, independencia judicial y credibilidad de los tribunales.",
+         u="https://acento.com.do/actualidad/la-mayor-sabiduria-es-saber-elegir-a-los-mejores-para-jueces-constitucionales-7301.html"),
+]
+NEWS.sort(key=lambda n: n["d"], reverse=True)
 
 # Entrevista destacada (La Nación, Natasha Cambronero, 35.º aniversario de la Sala IV)
 # TODO: pegar la URL exacta del artículo en nacion.com cuando se tenga.

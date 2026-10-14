@@ -8,3 +8,10 @@
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# No indexar la URL técnica de Cloudflare Pages (contenido duplicado)
+https://fernandoc.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:project.fernandoc.pages.dev/*
+  X-Robots-Tag: noindex

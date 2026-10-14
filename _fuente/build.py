@@ -2,7 +2,7 @@
 """Genera el sitio estático en ./out/public  (python3 build.py)"""
 import json, re, os, shutil, html
 from datetime import date
-from data import SITE, BOOKS, NEWS, INTERVIEW, fix, RECOG_PERSONAL, RECOG_SALA, INDICATORS, EDITORIAL, ELECTION, ART158
+from data import P_LINKS, ART_LINKS, SITE, BOOKS, NEWS, INTERVIEW, fix, RECOG_PERSONAL, RECOG_SALA, INDICATORS, EDITORIAL, ELECTION, ART158
 import seo
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -23,6 +23,7 @@ def split_year(line):
     if line[m.end(1):].strip().startswith("a la fecha"):
         y += "–hoy"
     y = y.replace("a la fecha", "hoy")
+    y = re.sub(r"\s+(?:a\s+)?hoy$", "–hoy", y).replace("––", "–")
     return y, rest[0].upper() + rest[1:] if rest else rest
 
 def parse(lines):
@@ -36,12 +37,16 @@ def parse(lines):
     return out
 
 T, P, PB = L["trayectoria"], L["participaciones"], L["publicaciones"]
-estudios = parse(T[8:12])
-cargos = parse(T[13:50])
-ponencias_raw = parse(P[1:85]) + parse(T[50:79])
-asistencia = parse(P[86:106])
-articulos_raw = PB[12:43]
-investigaciones = parse(PB[44:46])
+# Fuente: CV actualizado del magistrado (FER.doc, oct 2026) -> cv.json, por secciones A–G
+CV = json.load(open(os.path.join(ROOT, "cv.json"), encoding="utf-8"))
+estudios = parse(CV["estudios"])
+# La presidencia se describe con el detalle verificado (interino 2018, electo 2020) en build_trayectoria
+cargos = parse([c for c in CV["cargos"] if not re.match(r"2018 a la fecha\.? presidente", c, re.I)])
+ponencias_raw = parse(CV["ponencias"])
+asistencia = parse(CV["asistencia"])
+articulos_raw = [p for p in CV["publicaciones"] if not re.match(r"(Autor|Coautor)\b", p)]
+investigaciones = parse(CV["investigaciones"])
+premios = parse(CV["premios"])
 
 seen, ponencias = set(), []
 for it in ponencias_raw:
@@ -75,7 +80,8 @@ def article(line):
     title, src = (m[0], m[1]) if len(m) == 2 else (s2, "")
     title = title.strip(" .")
     title = title[0].upper() + title[1:]
-    return dict(y=y, t=title, s=src.strip(), k=kind)
+    u = next((v for k2, v in ART_LINKS.items() if k2.lower() in s.lower()), "")
+    return dict(y=y, t=title, s=src.strip(), k=kind, u=u)
 articulos = [article(a) for a in articulos_raw]
 
 # ---------- layout ----------
@@ -289,7 +295,8 @@ def build_trayectoria():
         dict(y="2018", t="Presidente interino de la Sala Constitucional."),
         dict(y="2020–hoy", t="Presidente de la Sala Constitucional, electo por el pleno de magistrados."),
         dict(y="2025", t="Reelegido por la Asamblea Legislativa como magistrado propietario por un nuevo período de ocho años (juramentado el 17 de noviembre)."),
-        dict(y="2024", t="Reconocimiento por su trayectoria académica y labor docente, Poder Judicial del Estado de Oaxaca y Academia Mexicana de Derecho (México).")]
+        dict(y="2024", t="Reconocimiento por su trayectoria académica y labor docente, Poder Judicial del Estado de Oaxaca y Academia Mexicana de Derecho (México).")] + [
+        dict(y=p["y"], t="Reconocimiento: " + p["t"]) for p in premios if not p["y"].startswith("2024")]
     pub.sort(key=lambda c: first_year(c["y"]))
     body = hero("Trayectoria de vida", "Cuatro décadas de servicio público y academia",
                 "Estudio, docencia y servicio público: el camino que lo llevó a la Sala Constitucional.", "Trayectoria")
@@ -300,7 +307,8 @@ def build_trayectoria():
 <div><dt>Profesión</dt><dd>Doctor en Derecho y Notario Público</dd></div>
 <div><dt>Cargo actual</dt><dd>Presidente de la Sala Constitucional desde mayo de 2020 (interino desde agosto de 2018)</dd></div>
 <div><dt>Magistrado desde</dt><dd>16 de noviembre de 2009 · reelecto en 2017 y 2025</dd></div>
-<div><dt>Distinción</dt><dd>Reconocimiento a su trayectoria académica, Poder Judicial de Oaxaca, 2024</dd></div>
+<div><dt>Distinciones</dt><dd>El Búho de la Libre (ULD, 2009) · Reconocimiento a su trayectoria, Poder Judicial de Oaxaca y Academia Mexicana de Derecho, 2024</dd></div>
+<div><dt>Comisión de Venecia</dt><dd>Miembro suplente por Costa Rica desde 2016</dd></div>
 </dl></div>
 <p style="margin-top:16px"><button class="btn btn-ink" type="button" data-print>Imprimir / PDF</button></p></aside>
 <div>
@@ -333,7 +341,7 @@ def build_publicaciones():
     items = ""
     for a in arts:
         items += f'''<article class="item" data-type="{a["k"]}" data-year="{a["y"]}"><div class="y">{a["y"]}</div><div>
-<div class="t">{e(a["t"])}</div><div class="s">{e(a["s"])}</div>
+<div class="t">{e(a["t"])}</div><div class="s">{e(a["s"])}{(' · <a href="' + e(a["u"]) + '" target="_blank" rel="noopener">Leer ↗</a>') if a["u"] else ""}</div>
 <div class="badges"><span class="badge">{"Artículo" if a["k"]=="articulo" else "Ponencia publicada"}</span></div></div></article>'''
     n_a = sum(1 for a in arts if a["k"] == "articulo"); n_p = len(arts) - n_a
     body = hero("Publicaciones y aportes", "Obra escrita",
@@ -353,7 +361,8 @@ def build_publicaciones():
 def build_participaciones():
     rows = []
     for it in ponencias:
-        rows.append(dict(y=first_year(it["y"]), yl=it["y"], t=it["t"], k=p_type(it["t"]), i=is_intl(it["t"]), g="p"))
+        u = next((v for k2, v in P_LINKS.items() if k2.lower() in it["t"].lower()), "")
+        rows.append(dict(y=first_year(it["y"]), yl=it["y"], t=it["t"], k=p_type(it["t"]), i=is_intl(it["t"]), g="p", u=u))
     for it in asistencia:
         rows.append(dict(y=first_year(it["y"]), yl=it["y"], t=it["t"], k="formacion", i=is_intl(it["t"]), g="a"))
     rows.sort(key=lambda r: r["y"], reverse=True)
@@ -369,7 +378,7 @@ def build_participaciones():
             cy = r["y"]; html_items += f'<h3 class="year-head" data-year-head="{cy}">{cy}</h3>'
         types = r["k"] + (" intl" if r["i"] else "")
         badges = f'<span class="badge">{P_LABEL.get(r["k"], "Seminario / curso")}</span>' + ('<span class="badge intl">Internacional</span>' if r["i"] else "")
-        html_items += f'<article class="item" data-type="{types}" data-year="{r["y"]}"><div class="y">{e(r["yl"] or "")}</div><div><div class="s" style="color:var(--text);font-size:.96rem">{e(r["t"])}</div><div class="badges">{badges}</div></div></article>'
+        html_items += f'<article class="item" data-type="{types}" data-year="{r["y"]}"><div class="y">{e(r["yl"] or "")}</div><div><div class="s" style="color:var(--text);font-size:.96rem">{e(r["t"])}{(' · <a href="' + e(r["u"]) + '" target="_blank" rel="noopener">Ver programa ↗</a>') if r.get("u") else ""}</div><div class="badges">{badges}</div></div></article>'
     body = hero("Participaciones", "Conferencias, foros y comisiones",
                 f"{len(ponencias)} ponencias, mesas redondas y encargos técnicos en Costa Rica y el exterior, además de su formación continua.", "Participaciones")
     body += f'''<section class="block" style="padding-top:40px"><div class="wrap">
@@ -387,7 +396,7 @@ def build_prensa():
         ("90 %", "Amparos y salud", "Nueve de cada diez asuntos son recursos de amparo; buena parte se relaciona con listas de espera y acceso a medicamentos en la CCSS."),
         ("2", "Propuestas de reforma", "Crear tribunales constitucionales de primera instancia para los amparos, o dividir la Sala en dos secciones; también plantea discutir su independencia del Poder Judicial."),
         ("Art. 9", "División de poderes", "Recuerda que la separación de poderes y los frenos y contrapesos son la base del sistema republicano costarricense."),
-        ("Gini", "Inseguridad y desigualdad", "Identifica la inseguridad ciudadana como uno de los problemas centrales del país y atribuye su causa de fondo a la desigualdad social."),
+        ("Desigualdad", "Inseguridad y desigualdad", "Identifica la inseguridad ciudadana como uno de los problemas centrales del país y atribuye su causa de fondo a la desigualdad social."),
         ("1949", "Solidez democrática", "Valora que la Constitución de 1949 creó un diseño institucional que dificulta el desmontaje de los órganos de control."),
     ]
     body = hero("Contexto actual", "La Sala Constitucional hoy",
