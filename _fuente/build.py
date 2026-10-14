@@ -444,7 +444,6 @@ def build_prensa():
 <section class="block alt"><div class="wrap">
 <div class="sec-head"><div><div class="eyebrow">Cobertura</div><h2>Notas recientes</h2></div></div>
 <div class="grid-3">{"".join(news_card(n, i==0) for i,n in enumerate([x for x in NEWS if x is not EDITORIAL]))}</div>
-<p class="note">¿Es periodista? Las solicitudes de entrevista pueden enviarse desde la página de <a href="/contacto.html">contacto</a>.</p>
 </div></section>''' + indicators_block() + recog_block() + videos_block()
     return page("contexto-actual.html", "Contexto actual | Fernando Castillo Víquez",
                 "Entrevistas, perfiles y noticias sobre Fernando Castillo Víquez, presidente de la Sala Constitucional de Costa Rica.", body)

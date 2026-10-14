@@ -335,3 +335,6 @@ textarea{min-height:150px;resize:vertical}
 .stat:has(b.done)::after{transform:scaleX(1)}
 @media (prefers-reduced-motion:reduce){.stat b.done{animation:none}.stat::after{transform:none}}
 .nowrap{white-space:nowrap}
+
+/* El atributo hidden debe ganar sobre display:grid/flex de .item y .year-head (filtros) */
+[hidden]{display:none!important}

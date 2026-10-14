@@ -104,10 +104,6 @@ NEWS += [
          t="35 aniversario de la Sala Constitucional",
          s="Tuvo a su cargo las palabras de apertura de la actividad académica por los 35 años de la Sala, organizada en la Facultad de Derecho de la Universidad de Costa Rica.",
          u="https://derecho.ucr.ac.cr/sites/default/files/events/documentos/Programa_35_aniversario_Sala_Constitucional.pdf"),
-    dict(d="2016-08-21", dl="ago 2016", src="Comisión de Venecia (Consejo de Europa)", kind="Nombramiento",
-         t="Costa Rica designa a sus representantes ante la Comisión de Venecia",
-         s="Tras la adhesión de Costa Rica a la Comisión Europea para la Democracia por el Derecho, fue designado miembro suplente en representación del país.",
-         u="https://www.coe.int/en/web/venice-commission/-/event-2278"),
 ]
 NEWS += [
     dict(d="2026-08-18", dl="18 ago 2026", src="El Mundo CR", kind="Noticia",
@@ -122,10 +118,6 @@ NEWS += [
          t="Medio siglo de la Convención Americana sobre Derechos Humanos",
          s="Participó en la sesión de clausura, en Barcelona, junto con presidentes de tribunales constitucionales de Colombia y Bolivia, una jueza de la Corte Suprema de Uruguay y un juez de la Corte IDH.",
          u="https://www.upf.edu/documents/6764143/227241121/Programa_50_CIDH_Definitiu.pdf/cbd1e01d-eb46-27e8-7c2a-00a1761c90ec"),
-    dict(d="2011-09-20", dl="20 sep 2011", src="Acento (República Dominicana)", kind="Entrevista",
-         t="«La mayor sabiduría es saber elegir a los mejores para jueces constitucionales»",
-         s="Entrevista sobre los desafíos de la justicia constitucional en América Latina: acceso a la justicia, independencia judicial y credibilidad de los tribunales.",
-         u="https://acento.com.do/actualidad/la-mayor-sabiduria-es-saber-elegir-a-los-mejores-para-jueces-constitucionales-7301.html"),
 ]
 NEWS.sort(key=lambda n: n["d"], reverse=True)
 
